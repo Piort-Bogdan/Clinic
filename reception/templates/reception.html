@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Доктор</th>
+      <th scope="col">Владелец</th>
+      <th scope="col">Кличка животного</th>
+      <th scope="col">Дата\Врема приема</th>
+      <th scope="col">E-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for doctor in Doctor %}
+        <tr>
+      <th scope="row">1</th>
+      <td>{{ doctor.doctor_name }} {{doctor.doctor_fathername}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
