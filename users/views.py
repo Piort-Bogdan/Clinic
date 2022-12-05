@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 from .forms import LoginForm, RegisterForm
 
@@ -27,11 +29,22 @@ def user_login(request, form=None):
                                                       })
 
 
-def RegisterUser(request, reg_form=None):
+class RegisterUser(CreateView):
+    form_class = RegisterForm
+    success_url = reverse_lazy('thanks')
+    template_name = 'registration/register.html'
 
-    if request.method == "POST":
-        reg_form = RegisterForm(request.POST)
-        return HttpResponse('Регистрация')
-    return render(request, 'registration/register.html', {'reg_form':reg_form
-                                                        })
+    def post(self, request):
+        if request.method == "POST":
+            form = RegisterForm(request.POST)
+            if form.is_valid:
+                form.save()
+                return redirect('/thanks/')
+            else:
+                form = RegisterForm()
 
+
+
+
+def ThanksPage(request):
+    return HttpResponse("Спасибо за регистрацию!")

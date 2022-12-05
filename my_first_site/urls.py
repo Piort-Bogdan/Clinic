@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+
 import reception
 import users
 
@@ -30,7 +31,10 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('', include('users.urls'), name='user'),
     path('', include('reception.urls')),
-    path('', include('users.urls'), name='register')
+    path('', include('users.urls'), name='register'),
+    path('', include('users.urls'), name='thanks'),
+    path('', include('main_page.urls'), name='main_page')
+
 
 
 

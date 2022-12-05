@@ -14,7 +14,7 @@ from clients_data.models import DoctorsJobTitle
 @admin.register(Receptions)
 class ReceptionsAdmin(admin.ModelAdmin):
     readonly_fields = ('kind_of_pet_rec', )
-    list_display = ('owner_name', 'get_owner_lastname', 'data_receptions', 'doctor', 'get_job_title', 'doctor_job_title_rec')
+    list_display = ('owner_name', 'get_owner_lastname', 'data_receptions', 'doctor')
 
 
     def get_owner_lastname(self, obj):

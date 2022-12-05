@@ -1,15 +1,16 @@
 from django.db import models
 from clients_data.admin import DoctorsAdmin
-from clients_data.models import ClientsData, Doctors, KindOfPet, Pets, DoctorsJobTitle
+from clients_data.models import Doctors, KindOfPet, Pets, DoctorsJobTitle
+from users.models import CustomUserForm
 
 
 
 
 class Receptions(models.Model):
-    owner_name = models.ForeignKey(ClientsData, verbose_name='Имя владельца', on_delete=models.CASCADE, null=True, related_name='owners')
-    owner_lastname_rec = models.ForeignKey(ClientsData, verbose_name='Фамилия владельца', on_delete=models.CASCADE, null=True)
+    owner_name = models.ForeignKey(CustomUserForm, verbose_name='Имя владельца', on_delete=models.CASCADE, null=True, related_name='owners')
+    owner_lastname_rec = models.ForeignKey(CustomUserForm, verbose_name='Фамилия владельца', on_delete=models.CASCADE, null=True)
     kind_of_pet_rec = models.ForeignKey(KindOfPet, verbose_name='Вид животного', on_delete=models.SET_NULL, null=True, related_name='Kinde_pets')
-    pet_gender_rec = models.ForeignKey(ClientsData, verbose_name='Вид животного', on_delete=models.SET_NULL, null=True, related_name='+')
+    pet_gender_rec = models.ForeignKey(KindOfPet, verbose_name='Вид животного', on_delete=models.SET_NULL, null=True, related_name='+')
     pet_nickname_rec = models.ForeignKey(Pets, verbose_name='Кличка животного', on_delete=models.CASCADE, null=True, related_name='nick_names')
     data_receptions = models.DateTimeField(auto_now_add =True, verbose_name='Дата приема')
     doctor = models.ForeignKey(Doctors, on_delete=models.SET_NULL, null=True)

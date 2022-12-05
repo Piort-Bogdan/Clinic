@@ -1,3 +1,5 @@
 from django.shortcuts import render
+def MainPage(request):
 
-# Create your views here.
+    return render(request, '', data)
+

@@ -1,12 +1,12 @@
-{% extends 'registration/base.html'%}
+{% extends 'base.html'%}
 
 {% block main %}
 
 <form method="POST">{% csrf_token %}
-    {{ reg_form.as_p }}
+    {{ form.as_p }}
 
     <button class="btn btn-outline-info" type="submit">Регистрация</button>
 
 </form>
-
+ <input type="hidden" name="return_to" value="{{ return_to_url }}">
 {% endblock %}

@@ -1,13 +1,18 @@
 from django import forms
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUserForm
 
 
 
 
 
-class RegisterForm(forms.Form):
-    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    Email = forms.EmailField(label='Электронная почта', widget=forms.EmailField)
+class RegisterForm(UserCreationForm):
+
+    class Meta:
+        model = CustomUserForm
+        fields = ('owner_name', 'owner_lastname', 'owner_fathername', 'owner_tel', 'gender', 'username', 'email' )
+
 
 
 
