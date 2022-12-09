@@ -18,9 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+<<<<<<< HEAD
 
 import reception
 import users
+=======
+from users import urls
+
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 
 admin.site.site_header = 'Ветеринарная клиника "MOLLI"'
 admin.site.index_title = 'MOLLI'
@@ -29,6 +34,7 @@ admin.site.index_title = 'MOLLI'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+<<<<<<< HEAD
     path('', include('users.urls'), name='user'),
     path('', include('reception.urls')),
     path('', include('users.urls'), name='register'),
@@ -37,6 +43,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls'))
 
 
+=======
+    path('', include(urls))
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

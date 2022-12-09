@@ -27,8 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+<<<<<<< HEAD
 # User
 AUTH_USER_MODEL = 'users.CustomUserForm'
+=======
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 # Login
 LOGIN_REDIRECT_URL = "/"
 
@@ -36,7 +39,10 @@ LOGIN_REDIRECT_URL = "/"
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
     'rest_framework',
+=======
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,9 +53,13 @@ INSTALLED_APPS = [
     'reception.apps.ReceptionConfig',
     'debug_toolbar',
     'django_extensions',
+<<<<<<< HEAD
     'users',
     'main_page',
     'pet_pharmacy',
+=======
+    'users'
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 
 ]
 
@@ -93,6 +103,7 @@ WSGI_APPLICATION = 'my_first_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+<<<<<<< HEAD
 
 
 DATABASES = {
@@ -109,10 +120,17 @@ DATABASES = {
         'PASSWORD': 'microsd123',
         'HOST': 'localhost',
         'PORT': '5432',
+=======
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
     }
 }
 
 
+<<<<<<< HEAD
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -130,6 +148,24 @@ AUTH_PASSWORD_VALIDATORS = [
     # {
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # },
+=======
+# Password validation
+# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 ]
 
 

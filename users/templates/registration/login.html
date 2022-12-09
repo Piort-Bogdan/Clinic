@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends  'registration/base.html' %}
 {% block main %}
 <form method="post">{% csrf_token %}
@@ -28,4 +29,31 @@
 <!--</form>-->
 <!--</div>-->
 <!--</div>-->
+=======
+{% extends  'base.html' %}
+
+
+{% block main %}
+<div class="card">
+<div class="card-body">
+<h4 class="card-title">Log in to your account</h4>
+<form method="post">
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}">
+
+    <div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Email address</label>
+</div>
+<div class="form-floating">
+  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+  <label for="floatingPassword">Password</label>
+</div>
+
+
+<button type="submit" class="btn btn-primary btn-block">Log in</button>
+</form>
+</div>
+</div>
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
 {% endblock %}

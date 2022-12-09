@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from clients_data.models import Doctors
 from reception.models import Receptions
 from users.models import CustomUserForm,AbstractUser
@@ -13,3 +14,7 @@ def show_request(request):
             'Reception': Reception,
             'users': users
         })
+=======
+
+# Create your views here.
+>>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
