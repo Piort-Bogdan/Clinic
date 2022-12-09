@@ -16,7 +16,6 @@ class KindOfPet(models.Model):
 
 
 class Pets(models.Model):
-<<<<<<< HEAD
     GENDER = {
         ("m",'Мужской'),
         ('f','Женский')
@@ -31,11 +30,10 @@ class Pets(models.Model):
                                     verbose_name='Вид животного'
                                     )
     pet_gender = models.CharField('Пол животного', max_length=1, choices=GENDER)
-=======
     pet_nickname = models.CharField('Кличка животного', max_length=50)
     pet_age = models.IntegerField('Возраст животного')
 
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
+
 
     def __str__(self):
         return f'{self.pet_nickname}'
@@ -76,8 +74,7 @@ class Doctors(models.Model):
         verbose_name_plural = 'Доктора'
 
 
-<<<<<<< HEAD
-=======
+
 class ClientsData(models.Model):
     Gender = (
         ("M","Мужской"),
@@ -104,7 +101,7 @@ class ClientsData(models.Model):
     class Meta:
         verbose_name = 'Данные клиента'
         verbose_name_plural = 'Данные клиентов'
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
+
 
 
 

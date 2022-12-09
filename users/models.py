@@ -1,5 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
 from django.contrib.auth.models import AbstractUser
 from clients_data.models import KindOfPet, Pets
 
@@ -37,7 +36,3 @@ class CustomUserForm(AbstractUser):
                                         )
 
 
-=======
-
-# Create your models here.
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90

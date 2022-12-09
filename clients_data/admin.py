@@ -23,13 +23,10 @@ class DoctorsAdmin(admin.ModelAdmin):
     get_img.short_description = 'Фото'
 
 
-<<<<<<< HEAD
-
-=======
 @admin.register(ClientsData)
 class PetsAdmin(admin.ModelAdmin):
     list_display = ('owner_name', 'owner_lastname',  'pet_nickname', 'kind_of_pet', 'owner_adres', 'owner_tel', 'owner_email', 'owner_create_data')
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
+
 admin.site.register(Pets)
 
 admin.site.register(DoctorsJobTitle)

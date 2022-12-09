@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
@@ -8,12 +7,6 @@ from django.views.generic import CreateView
 
 from .forms import LoginForm, RegisterForm
 from .models import CustomUserForm
-
-
-def user_login(request, form=None):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-=======
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -21,7 +14,6 @@ from .forms import LoginForm
 def user_login(request, form=None):
     if request.method == 'POST':
         form.LoginForm(request.POST)
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
         if  form.is_valid():
             cd = form.cleaned_data
             user = authenticate(username = cd['username'],
@@ -36,7 +28,6 @@ def user_login(request, form=None):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-<<<<<<< HEAD
     return render(request, 'registration/login.html',{'form':form
                                                       })
 
@@ -61,6 +52,5 @@ class RegisterUser(CreateView):
 def ThanksPage(request):
     user = CustomUserForm
     return render(request, 'registration/thanks.html', {'user': user})
-=======
     return render(request, 'account/login.html',{'form':form})
->>>>>>> 137dbcd8a0c79ac5ecc9567cbc090dc24fd17f90
+
