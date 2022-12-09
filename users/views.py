@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from .forms import LoginForm, RegisterForm
+from .models import CustomUserForm
 
 
 def user_login(request, form=None):
@@ -47,4 +48,5 @@ class RegisterUser(CreateView):
 
 
 def ThanksPage(request):
-    return HttpResponse("Спасибо за регистрацию!")
+    user = CustomUserForm
+    return render(request, 'registration/thanks.html', {'user': user})

@@ -33,7 +33,8 @@ urlpatterns = [
     path('', include('reception.urls')),
     path('', include('users.urls'), name='register'),
     path('', include('users.urls'), name='thanks'),
-    path('', include('main_page.urls'), name='main_page')
+    path('', include('main_page.urls'), name='main_page'),
+    path('api-auth/', include('rest_framework.urls'))
 
 
 

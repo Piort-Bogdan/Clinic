@@ -11,15 +11,29 @@
       <th scope="col">Кличка животного</th>
       <th scope="col">Дата\Врема приема</th>
       <th scope="col">E-mail</th>
+      <th scope="col">Детали</th>
     </tr>
   </thead>
   <tbody>
-    {% for doctor in Doctor %}
-        <tr>
-      <th scope="row">1</th>
-      <td>{{ doctor.doctor_name }} {{doctor.doctor_fathername}}</td>
-    </tr>
-  {% endfor %}
+
+   {% if request.user.is_authenticated %}
+   <h1>Добро пожаловать, {{ request.user.first_name }}</h1>
+        {% for objq in Reception %}
+            <tr>
+            <th scope="row">1</th>
+            <td>{{ objq.doctor.doctor_name }} {{ objq.doctor.doctor_lastname }}</td>
+            <td>{{ objq.owner_name.owner_name }} {{ objq.owner_lastname_rec.owner_lastname }} </td>
+            <td>{{ objq.pet_nickname_rec.pet_nickname }} </td>
+            <td>{{ objq.data_receptions }} </td>
+            <td>{{ objq.owner_email.email }} </td>
+            <td><a href="#">Подробнее...</a></td>
+            </tr>
+        {% endfor %}
+   {% else %}
+        <h1>Не авторизован</h1>
+        <h1>{{ request.user.username }}</h1>
+   {% endif %}
+
   </tbody>
 </table>
 {% endblock %}
