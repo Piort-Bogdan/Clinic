@@ -1,6 +1,6 @@
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from clients_data.models import KindOfPet, Pets
 
 
 
@@ -24,15 +24,9 @@ class CustomUserForm(AbstractUser):
                                  max_length=30
                                  )
 
-    owner_name = models.CharField('Имя владельца',
-                                  max_length=30,
-                                  help_text='Введите имя владельца'
-                                  )
-    owner_lastname = models.CharField('Фамилия владельца',
-                                      max_length=50
-                                      )
     owner_fathername = models.CharField('Отчество владельца',
                                         max_length=50
                                         )
+
 
 

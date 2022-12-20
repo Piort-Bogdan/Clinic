@@ -1,6 +1,9 @@
+from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.utils.translation import gettext_lazy as _
+
 from django import forms
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, UsernameField, ReadOnlyPasswordHashField
 from .models import CustomUserForm
 
 
@@ -11,7 +14,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = CustomUserForm
-        fields = ('owner_name', 'owner_lastname', 'owner_fathername', 'owner_tel', 'gender', 'username', 'email' )
+        fields = ('owner_fathername', 'owner_tel', 'gender', 'username', 'email' )
 
 
 
@@ -25,3 +28,9 @@ class LoginForm(forms.Form):
         label='Пароль',
         widget=forms.PasswordInput
     )
+
+
+
+
+
+

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block title %} <title>Запись на прием</title>{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form actions="" method="POST">{% csrf_token %}
+            <p>{{ form.derscription }}</p>
+            <p>{{ form.data_to_come }}</p>
+            <p>{{ form.time_to_come }}</p>
+                <p><select class="form-select" aria-label="Выберите номер" name="tel_num">
+                <option selected>Выберите номер телефона</option>
+                        <label for="id_tel_num">Номер телефона...</label>
+                        <option id="id_tel_num" value="{{ owner_data.id }}">{{ owner_data.owner_tel }}</option>
+
+                </select></p>
+                <p><select class="form-select" aria-label="Выберите номер" name="email_recive">
+                <option selected>Выберите E-mail</option>
+                    <label for="id_email_recive">E-mail</label>
+                        <option id="id_email_recive" value="{{ owner_data.id }}">{{ owner_data.email }}</option>
+
+                    </select>
+                <p><select class="form-select" aria-label="Выберите питомца" name="pet_name">
+                <option selected>Выберите питомца</option>
+                        <label for="id_pet_name">Кличка питомца</label>
+                        <option id="id_pet_name" value="{{ pets.id }}">{{ pets.pet_nickname }}</option>
+                </select></p>
+                <p><select class="form-select" aria-label="Выберите владельца" name="pet_owner">
+                <option selected>Имя владельца...</option>
+                        <label for="id_pet_owner">Имя владельца</label>
+                        <option id="id_pet_owner" value="{{ owner_data.id }}">{{ owner_data.first_name }} </option>
+
+                </select></p>
+                <label for="id_status" type="hidden">Статус</label>
+                <input id="id_status" type="hidden" name="status" value="NEW">
+
+
+            <button type="submit" class="btn btn-success">Записаться</button>
+        </form>
+    {% else %}
+    <h> Заявку может оставлять только зарегистрированный пользователь, пожалуйста, <a href="auth/api/create/">зарегистрируйтесь</a> </h>
+    {% endif %}
+<!--<form actions="" method="POST">{% csrf_token %}-->
+
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Описание проблемы</label>-->
+<!--        <textarea class="form-control", name="derscription" id="is_description" rows="3"></textarea>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-success">Записаться</button>-->
+<!--</form>-->
+{% endblock %}
