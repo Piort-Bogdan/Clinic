@@ -1,0 +1,44 @@
+
+#версия докера
+version: "3.9"
+
+
+services:
+  clinic:
+    build:
+      context: .
+    image: dominiusd/climic_molli
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/my_first_site_root
+    depends_on:
+      ClinicDB:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+
+  migrations:
+    build:
+      context: .
+    image: dominiusd/climic_molli
+    volumes:
+      - .:/my_first_site_root
+    depends_on:
+      ClinicDB:
+        condition: service_healthy
+    command: python /my_first_site_root/manage.py migrate
+
+  ClinicDB:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: microsd123
+      POSTGRES_DB: ClinicDB
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

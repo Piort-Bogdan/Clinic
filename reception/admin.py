@@ -1,29 +1,40 @@
 from django.contrib import admin
 from django.contrib.admin import display
+from django.forms import inlineformset_factory
 
+from .forms import CategoryChoiceField
 from .models import Receptions, RecieveRequsetModel
 from .models import CustomUserForm
 
-
 # Register your models here.
+
+
+# class ReceptionsInLine(admin.TabularInline):
+#     model = CustomUserForm
+
 
 
 
 @admin.register(Receptions)
 class ReceptionsAdmin(admin.ModelAdmin):
     readonly_fields = ('kind_of_pet_rec', )
-    list_display = ('owner_name', 'get_owner_lastname', 'data_receptions', 'doctor')
+    list_display = ('get_owner_lastname', 'get_tel', 'data_receptions', 'doctor', )
 
+    FriendshipFormSet = inlineformset_factory(CustomUserForm, RecieveRequsetModel, fk_name='email_recive',
+    fields = ('tel_num', 'email_recive', 'pet_owner', ))
 
+    def get_tel(self, obj):
+        return obj.owner_name.owner_tel
 
 
     def get_owner_lastname(self, obj):
-       return obj.owner_lastname.objects.last_name.get()
+       return f'{obj.owner_name.first_name} {obj.owner_name.last_name}'
 
 
     def get_job_title(self, obj):
-       return obj.doctor.doctor_job_title.get()
+       return obj.doctor.doctor_job_title.doctors_job_title
 #python manage.py shell_plus --print-sql
+
 
 
 

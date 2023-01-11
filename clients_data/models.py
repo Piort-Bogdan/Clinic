@@ -52,24 +52,7 @@ class DoctorsJobTitle(models.Model):
         verbose_name_plural = 'Должность врачей'
 
 
-class Doctors(models.Model):
-    doctor_name = models.CharField('Имя доктора', max_length=30)
-    doctor_lastname = models.CharField('Фамилия доктора', max_length=50)
-    doctor_fathername = models.CharField('Отчество доктора', max_length=50)
-    doctor_tel = models.CharField('Номер телефона', max_length=30)
-    doctor_email = models.EmailField('Электронная почта')
-    doctor_foto = models.ImageField('Фотография', upload_to='clients_data/doctors')
-    doctor_job_title = models.ManyToManyField(DoctorsJobTitle, verbose_name='Должность')
 
-
-
-
-    def __str__(self):
-        return self.doctor_name
-
-    class Meta:
-        verbose_name = 'Доктор'
-        verbose_name_plural = 'Доктора'
 
 
 

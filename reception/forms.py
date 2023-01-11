@@ -37,7 +37,7 @@ class RecievRequestForm(forms.ModelForm):
                   'pet_name', 'pet_owner', 'status',)
         widgets = {
              'data_to_come': DateInput(
-                 attrs= {'type':'date', "min":now_data}
+                 attrs={'type': 'date', "min": now_data}
              )
             # 'time_to_come': SelectDateWidget(
             #     attrs={'type':'time', 'min':'09:00', 'max':'22:00', 'step':'1800'}
@@ -45,12 +45,9 @@ class RecievRequestForm(forms.ModelForm):
          }
 
 
-
-
-
-
-
-
+class CategoryChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return "tel: {}".format(obj.owner_tel)
 
 
 

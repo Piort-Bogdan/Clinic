@@ -14,7 +14,7 @@ class CustomUserFormAdmin(UserAdmin):
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email", "gender", "owner_pet", "owner_tel")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email", "gender", "owner_pet", "owner_tel", 'doctor_foto', 'doctor_job_title', )}),
         (
             _("Permissions"),
             {

@@ -163,7 +163,7 @@ DATABASES = {
         'NAME': 'ClinicDB',
         'USER': 'postgres',
         'PASSWORD': 'microsd123',
-        'HOST': 'localhost',
+        'HOST': 'ClinicDB',
         'PORT': '5432',
     }
 }
