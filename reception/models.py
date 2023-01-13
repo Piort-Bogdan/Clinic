@@ -71,6 +71,7 @@ class RecieveRequsetModel(models.Model):
     pet_name = models.ForeignKey("clients_data.Pets", verbose_name='Имя питомца',
                                  on_delete=models.CASCADE, null=True, related_name='Pets_name')
     status = models.CharField(max_length=12, choices=STATUS, default='Новая заявка')
+    reception_pdf = models.FileField(upload_to='recievs/%Y/%m/%d/', blank = True, null=True)
 
 
     def __str__(self):
