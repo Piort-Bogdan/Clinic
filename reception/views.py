@@ -1,11 +1,18 @@
+
+
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+
+from aspose.words import Document
+from docxtpl import DocxTemplate
 
 from clients_data.models import Pets
 from reception.forms import RecievRequestForm
 from reception.models import Receptions, RecieveRequsetModel
 from users.models import CustomUserForm,AbstractUser
+
 
 
 
@@ -43,6 +50,9 @@ def reception_request(request):
                 )
 
                 return HttpResponse(f'<h1>Вы записались на {form.cleaned_data["time_to_come"]}, электронное подтверждение отправлено на Email {CustomUserForm.objects.get(id = request.POST.get("email_recive")).email}.</h1>')
+
+
+
         form = RecievRequestForm()
         return render(request, 'reception-request.html', {'form': form,
                                                             'owner_data': owner_data,

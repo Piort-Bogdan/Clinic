@@ -29,6 +29,7 @@ from rest_framework_simplejwt.views import (
 
 import reception
 import users
+import pet_pharmacy
 
 from users import urls
 
@@ -48,6 +49,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('', include('users.urls')),
+    path('', include('pet_pharmacy.urls')),
 
 
 
