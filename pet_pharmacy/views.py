@@ -18,3 +18,4 @@ class PharmacyUpdate(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+# def pharmacy_product_list(request)

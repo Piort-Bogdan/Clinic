@@ -7,12 +7,15 @@ from django.db import models
 
 
 class Pharmacy(models.Model):
-    title_medicine = models.CharField(max_length=100, verbose_name='Название лекарства')
+
+
+    title_medicine = models.CharField(max_length=100, verbose_name='Название лекарства', db_index=True)
     manufacturer = models.CharField(max_length=200, verbose_name='Производитель')
     descriptions = models.TextField('Описание', blank=True)
-    price = models.IntegerField('Цена',)
+    price = models.DecimalField('Цена',max_digits=100, decimal_places=2)
+    slug = models.SlugField(max_length=255, db_index=True)
     expiration_data = models.DateField('Дата окончания срока годности')
-    count = models.IntegerField('Количество', default='0', blank=True)
+    count = models.IntegerField('Количество', default='0')
     category = models.ForeignKey('medicine_category', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Категория лекарства')
     barcode = models.ImageField(upload_to='media/medicines_barcode/', verbose_name='Штрихкод товара', blank=True,
                                 width_field='141px', height_field='98px')
@@ -26,10 +29,13 @@ class Pharmacy(models.Model):
     class Meta:
         verbose_name = 'Лекарства'
         verbose_name_plural = 'Лекарства'
+        index_together = (('id', 'slug'),)
+        ordering = ('title_medicine', )
 
 
 class Medicine_Category(models.Model):
-    category = models.CharField(max_length=140, verbose_name='Категория')
+    category = models.CharField(max_length=140, verbose_name='Категория', db_index=True)
+    slug_category = models.SlugField(max_length=250, db_index=True, unique=True)
 
     def __str__(self):
         return self.category

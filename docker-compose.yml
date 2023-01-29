@@ -5,6 +5,7 @@ version: "3.9"
 
 services:
   clinic:
+    platform: linux/amd64
     build:
       context: .
     image: dominiusd/climic_molli
@@ -17,8 +18,12 @@ services:
         condition: service_healthy
       migrations:
         condition: service_completed_successfully
+      rabbit:
+        condition: service_started
+
 
   migrations:
+    platform: linux/amd64
     build:
       context: .
     image: dominiusd/climic_molli
@@ -30,7 +35,7 @@ services:
     command: python /my_first_site_root/manage.py migrate
 
   ClinicDB:
-    image: postgres:latest
+    image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: microsd123
@@ -42,3 +47,32 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  rabbit:
+    container_name: rabbitmq
+    restart: always
+    image: "rabbitmq:3-management"
+    volumes:
+      - ./rabbit_data/:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
+
+  worker:
+    platform: linux/amd64
+    container_name: 'celeryworker'
+    build:
+      context: .
+    hostname: worker
+    entrypoint: celery
+    command: celery -A my_first_site worker -l info
+    volumes:
+      - .:/my_first_site_root
+    links:
+      - rabbit
+    depends_on:
+      rabbit:
+        condition: service_started
+      clinic:
+        condition: service_started
+      migrations:
+        condition: service_started

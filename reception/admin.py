@@ -17,8 +17,8 @@ from .models import CustomUserForm
 
 @admin.register(Receptions)
 class ReceptionsAdmin(admin.ModelAdmin):
-    readonly_fields = ('kind_of_pet_rec', )
-    list_display = ('get_owner_lastname', 'get_tel', 'data_receptions', 'doctor', )
+    readonly_fields = ('kind_of_pet_rec', 'id',  )
+    list_display = ('get_owner_lastname', 'get_tel', 'data_receptions', 'doctor', 'id', )
 
     FriendshipFormSet = inlineformset_factory(CustomUserForm, RecieveRequsetModel, fk_name='email_recive',
     fields = ('tel_num', 'email_recive', 'pet_owner', ))

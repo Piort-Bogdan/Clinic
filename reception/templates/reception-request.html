@@ -10,6 +10,7 @@
     {% if user.is_authenticated %}
         <form actions="" method="POST">{% csrf_token %}
             <p>{{ form.derscription }}</p>
+            <p>{{ form.id.as_p }}</p>
             <p>{{ form.data_to_come }}</p>
             <p>{{ form.time_to_come }}</p>
                 <p><select class="form-select" aria-label="Выберите номер" name="tel_num">

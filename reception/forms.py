@@ -34,7 +34,7 @@ class RecievRequestForm(forms.ModelForm):
 
         model = RecieveRequsetModel
         fields = ('derscription', 'data_to_come', 'time_to_come', 'email_recive', 'tel_num',
-                  'pet_name', 'pet_owner', 'status',)
+                  'pet_name', 'pet_owner', 'status', 'id',)
         widgets = {
              'data_to_come': DateInput(
                  attrs={'type': 'date', "min": now_data}
