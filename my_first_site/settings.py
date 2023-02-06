@@ -89,6 +89,11 @@ FROM_EMAIL = 'dominiusd@mail.ru'
 EMAIL_ADMIN = 'piort.bogdan@gmail.com'
 
 
+#CELERY settings
+
+CELERY_BROKER_URL = "amqp://rabbit/"
+CELERY_RESULT_BACKEND = "amqp://rabbit/"
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),

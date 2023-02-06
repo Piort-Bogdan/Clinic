@@ -6,7 +6,7 @@ from .models import RecieveRequsetModel
 
 
 
-@shared_task
+@shared_task()
 def recieve_order_created(receive_id):
 
 
@@ -19,7 +19,7 @@ def recieve_order_created(receive_id):
         message=f'Добрый день, Вы записались на прием {recieve.data_to_come} в '
                 f'{recieve.time_to_come}',
         from_email='dominiusd@mail.ru',
-        recipient_list=(recieve.objects.get(id=receive_id).email, ),
+        recipient_list=('dominiusd@mail.ru', ),
         fail_silently=False,
     )
     return mail_sent

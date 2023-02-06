@@ -1,12 +1,9 @@
 
 
-from django.core.mail import send_mail
+
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
-
-# from aspose.words import Document
-# from docxtpl import DocxTemplate
 
 from clients_data.models import Pets
 from reception.forms import RecievRequestForm
@@ -42,8 +39,11 @@ def reception_request(request):
             if form.is_valid():
                 print(f'valid data : {form.cleaned_data}')
                 form.save()
-                reciev_id = RecieveRequsetModel.objects.filter(time_to_come=form.cleaned_data["time_to_come"], data_to_come=form.cleaned_data["data_to_come"]).get().id
+                reciev_id = RecieveRequsetModel.objects.filter(time_to_come=form.cleaned_data["time_to_come"],
+                                                               data_to_come=form.cleaned_data["data_to_come"]).get().id
+                print('id:', reciev_id)
                 recieve_order_created.delay(reciev_id)
+                # print('gjg', recieve_order_created(reciev_id) )
 
                 return HttpResponse(f'<h1>Вы записались на {form.cleaned_data["time_to_come"]}, электронное подтверждение отправлено на Email {CustomUserForm.objects.get(id = request.POST.get("email_recive")).email}.</h1>')
 
