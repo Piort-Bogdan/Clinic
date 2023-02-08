@@ -9,7 +9,7 @@ from clients_data.models import Pets
 from reception.forms import RecievRequestForm
 from reception.models import Receptions, RecieveRequsetModel
 from users.models import CustomUserForm,AbstractUser
-from .tasks import recieve_order_created
+from reception.tasks import recieve_order_created
 
 
 

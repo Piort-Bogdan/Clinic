@@ -1,10 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm, SetPasswordForm, PasswordChangeForm
-from django.contrib.auth.hashers import make_password
-from django.urls import path
-from djoser.conf import User
 
 from users.models import CustomUserForm
 

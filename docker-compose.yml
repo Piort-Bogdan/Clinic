@@ -51,28 +51,25 @@ services:
   rabbit:
     container_name: rabbitmq
     restart: always
-    image: "rabbitmq:3-management"
+    image: "rabbitmq:latest"
     volumes:
       - ./rabbit_data/:/var/lib/rabbitmq
     ports:
       - "15672:15672"
+    command: ["bash", "-c", "chmod 400 /var/lib/rabbitmq/.erlang.cookie; rabbitmq-server"]
 
   worker:
     platform: linux/amd64
-    container_name: 'celeryworker'
+    container_name: celeryworker
     build:
       context: .
     hostname: worker
     entrypoint: celery
-    command: celery -A my_first_site worker -l info
+    command: celery -A my_first_site worker -l INFO
     volumes:
       - .:/my_first_site_root
     links:
       - rabbit
     depends_on:
-      rabbit:
-        condition: service_started
       clinic:
-        condition: service_started
-      migrations:
         condition: service_started

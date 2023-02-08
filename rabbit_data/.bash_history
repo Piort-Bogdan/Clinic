@@ -35,3 +35,4 @@ list_connections
 rabbitmqctl list_connections 
 docker ps
 exit
+exit

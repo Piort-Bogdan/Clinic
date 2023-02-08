@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'djoser',
     'clients_data',
-    'reception.apps.ReceptionConfig',
+    'reception',
     'debug_toolbar',
     'django_extensions',
     'users',
@@ -58,6 +58,8 @@ INSTALLED_APPS = [
 
 
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,8 +93,13 @@ EMAIL_ADMIN = 'piort.bogdan@gmail.com'
 
 #CELERY settings
 
+# CELERY_BROKER_URL = "amqp://127.0.0.1:5672/"
 CELERY_BROKER_URL = "amqp://rabbit/"
-CELERY_RESULT_BACKEND = "amqp://rabbit/"
+# CELERY_RESULT_BACKEND = "amqp://rabbit/"
+
+CELERY_IMPORTS = (
+    'reception.tasks',
+)
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
