@@ -1,10 +1,10 @@
 from __future__ import absolute_import
 from celery import shared_task
-# from my_first_site.celery import app
 from django.core.mail import send_mail
 
-from .models import RecieveRequsetModel
 
+
+from .models import RecieveRequsetModel, Receptions
 
 
 @shared_task
@@ -24,5 +24,28 @@ def recieve_order_created(receive_id):
         fail_silently=False,
     )
     return mail_sent
+
+
+
+
+from pathlib import Path
+
+
+@shared_task
+def RecievDocs(pdf_data):
+    from docxtpl import DocxTemplate
+    from docx2pdf import convert
+    from docx import Document
+
+    RecievDoc = DocxTemplate('reception/doc-pdf-fuller/Vet_card_01.docx')
+    context = {
+        'Doctor': Receptions.objects.filter(id = pdf_data).get().doctor,
+    }
+    RecievDoc.render(context)
+    RecievDoc.save(f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.docx')
+    # Open Docx to convert to pdf
+    DocToConvert = Document(f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.docx')
+    # Convert to pdf
+    DocToConvert.save(f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.pdf')
 
 

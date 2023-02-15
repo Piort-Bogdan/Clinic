@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 
@@ -8,6 +9,7 @@ from django.db import models
 
 class Pharmacy(models.Model):
 
+    ''' Аптека '''
 
     title_medicine = models.CharField(max_length=100, verbose_name='Название лекарства', db_index=True)
     manufacturer = models.CharField(max_length=200, verbose_name='Производитель')
@@ -26,11 +28,15 @@ class Pharmacy(models.Model):
     def __str__(self):
         return self.title_medicine
 
+
+
     class Meta:
         verbose_name = 'Лекарства'
         verbose_name_plural = 'Лекарства'
         index_together = (('id', 'slug'),)
         ordering = ('title_medicine', )
+
+
 
 
 class Medicine_Category(models.Model):

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} <title> Pharmacy Shop </title> {% endblock %}
+
+{% block content %}
+    {% for product in products %}
+    <div class="card" style="width: 18rem;">
+      <img src="{{ product.medicine_img.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title_medicine}}</h5>
+        <h5  class="card-title">{{product.price}} руб.</h5>
+        <p class="card-text">{{product.descriptions}}</p>
+        <a href="#" class="btn btn-primary">ADD TO CARD</a>
+      </div>
+    </div>
+    {% endfor %}
+
+
+
+{% endblock %}}

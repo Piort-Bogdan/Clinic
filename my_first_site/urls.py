@@ -45,11 +45,9 @@ urlpatterns = [
     path('', include('reception.urls')),
     path('', include('main_page.urls'), name='main_page'),
     path('api-auth/', include('rest_framework.urls')),
-    path('', include(urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('', include('users.urls')),
-    path('', include('pet_pharmacy.urls')),
+    path('', include('pet_pharmacy.urls'), name='shop'),
 
 
 

@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.admin import display
 from django.forms import inlineformset_factory
 
-from .forms import CategoryChoiceField
 from .models import Receptions, RecieveRequsetModel
 from users.models import CustomUserForm
 
@@ -19,6 +18,7 @@ from users.models import CustomUserForm
 class ReceptionsAdmin(admin.ModelAdmin):
     readonly_fields = ('kind_of_pet_rec', 'id',  )
     list_display = ('get_owner_lastname', 'get_tel', 'data_receptions', 'doctor', 'id', )
+
 
     FriendshipFormSet = inlineformset_factory(CustomUserForm, RecieveRequsetModel, fk_name='email_recive',
     fields = ('tel_num', 'email_recive', 'pet_owner', ))
@@ -42,6 +42,10 @@ class ReceptionsAdmin(admin.ModelAdmin):
 class RecieveRequsetModelAdmin(admin.ModelAdmin):
     list_display = ('owner_first_last_name', 'get_number', 'get_email', "get_name_kind", 'time_to_come', 'data_to_come', 'status')
     list_editable = ('status', )
+    list_filter = ('status', 'data_to_come')
+    search_fields = ('pet_owner__first_name__icontains', 'pet_name__pet_nickname__icontains' )
+    list_per_page = 20
+
 
     @display(description='Номер телефона')
     def get_number(self, obj):

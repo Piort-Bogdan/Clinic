@@ -8,7 +8,7 @@ from users.models import CustomUserForm
 
 class Receptions(models.Model):
 
-    '''Данные дял проведения приема'''
+    '''Данные для проведения приема'''
 
     owner_name = models.ForeignKey(CustomUserForm, verbose_name='Имя владельца', on_delete=models.CASCADE,
                                    null=True, related_name='owners')
@@ -81,6 +81,7 @@ class RecieveRequsetModel(models.Model):
     class Meta:
         verbose_name = 'Заявка на прием'
         verbose_name_plural = 'Заявки на прием'
+        unique_together = ['data_to_come', 'time_to_come']
 
 
 
