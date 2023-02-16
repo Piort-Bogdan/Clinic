@@ -65,7 +65,7 @@ services:
       context: .
     hostname: worker
     entrypoint: celery
-    command: celery -A vet_clinic_molli worker -l info
+    command: celery -A vet_clinic worker -l info
     volumes:
       - .:/my_first_site_root
     links:
