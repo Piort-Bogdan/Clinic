@@ -9,7 +9,7 @@ from clients_data.models import Pets
 from reception.forms import RecievRequestForm, RecieveForm
 from reception.models import Receptions, RecieveRequsetModel
 from users.models import CustomUserForm
-from reception.tasks import recieve_order_created, RecievDocs
+from reception.tasks import recieve_order_created, reciev_docs
 
 
 
@@ -87,7 +87,7 @@ def receptions(request):
             print(Receptions.objects.filter(rec_instructions=form.cleaned_data['rec_instructions']).get().send_pdf_reciev_copy)
             if Receptions.objects.filter(rec_instructions=form.cleaned_data['rec_instructions']).get().send_pdf_reciev_copy:
                 pdf_data = Receptions.objects.filter(rec_instructions=form.cleaned_data['rec_instructions']).get().id
-                RecievDocs.delay(pdf_data)
+                reciev_docs.delay(pdf_data)
             return render (request, 'reception.html', {'recieve_data': recieve_data,
                                                         'doctor_data': doctor_data,
                                                         'form': form})
