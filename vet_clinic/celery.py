@@ -3,9 +3,9 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vet_clinic_molli.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vet_clinic.settings')
 
-app = Celery('vet_clinic_molli')
+app = Celery('vet_clinic')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 

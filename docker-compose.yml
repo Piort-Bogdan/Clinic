@@ -20,6 +20,11 @@ services:
         condition: service_completed_successfully
       rabbit:
         condition: service_started
+    healthcheck:
+      test: [ "CMD-SHELL", "celery", "--help" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 
   migrations:
@@ -72,4 +77,5 @@ services:
       - rabbit
     depends_on:
       clinic:
-        condition: service_started
+        condition: service_healthy
+    command: celery -A my_first_site worker -l INFO

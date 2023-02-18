@@ -1,5 +1,5 @@
 
-
+from rest_framework import generics
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -8,6 +8,7 @@ from django.shortcuts import render
 from clients_data.models import Pets
 from reception.forms import RecievRequestForm, RecieveForm
 from reception.models import Receptions, RecieveRequsetModel
+from reception.serializers import ReceptionSerializer
 from users.models import CustomUserForm
 from reception.tasks import recieve_order_created, reciev_docs
 
@@ -102,4 +103,6 @@ def receptions(request):
 
     # def reception_pdf_data(self, request):
 
-
+class reception_serializer(generics.ListAPIView):
+    queryset = Receptions.objects.all()
+    serializer_class = ReceptionSerializer

@@ -38,10 +38,14 @@ def reciev_docs(pdf_data):
     RecievDoc = DocxTemplate('reception/doc-pdf-fuller/Vet_card_01.docx')
     context = {
         'Doctor': Receptions.objects.filter(id = pdf_data).get().doctor,
+        'first_name': Receptions.objects.filter(id = pdf_data).get().owner_name,
+        'last_name': Receptions.objects.filter(id = pdf_data).get().owner_lastname,
+        'data': Receptions.objects.filter(id = pdf_data).get().data_receptions,
+        'pet_name': Receptions.objects.filter(id = pdf_data).get().pet_nickname_rec,
     }
     RecievDoc.render(context)
-    RecievDoc.save(f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.docx')
+    RecievDoc.save(f'reception/doc-pdf-fuller/Vet_card_{context["last_name"]}_{context["data"]}.docx')
     #Convert to pdf
-    convert(f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.docx',
-            f'reception/doc-pdf-fuller/Vet_card_DATA_{context["Doctor"]}.pdf')
+    convert(f'reception/doc-pdf-fuller/Vet_card_{context["last_name"]}_{context["data"]}.docx',
+            f'reception/doc-pdf-fuller/Vet_card_{context["last_name"]}_{context["data"]}.pdf')
 

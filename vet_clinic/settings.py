@@ -93,8 +93,8 @@ EMAIL_ADMIN = 'piort.bogdan@gmail.com'
 
 #CELERY settings
 
-CELERY_BROKER_URL = "amqp://127.0.0.1:5672/"
-# CELERY_BROKER_URL = "amqp://rabbit/"
+# CELERY_BROKER_URL = "amqp://127.0.0.1:5672/"
+CELERY_BROKER_URL = "amqp://rabbit/"
 # CELERY_RESULT_BACKEND = "amqp://rabbit/"
 
 CELERY_IMPORTS = (
@@ -176,8 +176,8 @@ DATABASES = {
         'NAME': 'ClinicDB',
         'USER': 'postgres',
         'PASSWORD': 'microsd123',
-        'HOST': '127.0.0.1',
-        # 'HOST': 'ClinicDB',
+        # 'HOST': '127.0.0.1',
+        'HOST': 'ClinicDB',
         'PORT': '5432',
     }
 }
